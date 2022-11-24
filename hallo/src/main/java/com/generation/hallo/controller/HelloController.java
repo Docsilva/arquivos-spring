@@ -1,8 +1,8 @@
 package com.generation.hallo.controller;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.stereotype.Controller;
 
 
 @Controller
@@ -16,7 +16,7 @@ public class HelloController {
 
 	@GetMapping
 	public String hello2() {
-		return "✅	MENTALIDADES				\n"
+		return 	  "	MENTALIDADES				\n"
 				+ "	RESPONSABILIDADE PESSOAL	AVANÇADO	PROFICIENTE	EM DESENVOLVIMENTO	PRINCIPIANTE\n"
 				+ "	Demonstra total responsabilidade por suas ações, comportamentos e resultados de aprendizagem na Generation, incluindo manter sua motivação e engajamento durante todo o programa e participando de todas as sessões sincrônicas.	PONTUA 4/4 DA MÉTRICA	PONTUA 3/4 DA MÉTRICA	PONTUA 2/4 DA MÉTRICA	PONTUA 1/4 DA MÉTRICA (OU MENOS)\n"
 				+ "	Conclui todas as responsabilidades e atividades do programa, sem dar desculpas.				\n"
@@ -38,7 +38,7 @@ public class HelloController {
 				+ "	Faz perguntas esclarecedoras quando não entende um conceito que está sendo ensinado (via sessões assíncronas  ou sincrônicas, foruns de discussões e horários de atendimento).				\n"
 				+ "	Completa todas as tarefas / atividades necessárias no programa.				\n"
 				+ "COMMENTS:					\n"
-				+ "✅	HABILIDADES COMPORTAMENTAIS				s\n"
+				+ " HABILIDADES COMPORTAMENTAIS				s\n"
 				+ "	COMUNICAÇÃO	AVANÇADO	PROFICIENTE	EM DESENVOLVIMENTO	PRINCIPIANTE\n"
 				+ "	Comunica idéias de forma clara, eficaz, concisa e profissional.	PONTUA 4/4 DA MÉTRICA	PONTUA 3/4 DA MÉTRICA	PONTUA 2/4 DA MÉTRICA	PONTUA 1/4 DA MÉTRICA (OU MENOS)\n"
 				+ "	Demonstra linguagem corporal confiante e educada, inclusindo comunicação não verbal via contato por vídeo (ex.: permanece fisicamente engajado, escutando ativamente quando não está falando durante uma sessão virtual). 				\n"
