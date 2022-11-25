@@ -76,14 +76,17 @@ public class PostagemController {
 	//ATUALIZAR POST
 	@PutMapping
 	public ResponseEntity<Postagem> putPostagem(@Valid @RequestBody Postagem postagem){
-		return ResponseEntity.status(HttpStatus.OK).body(postagemRepository.save(postagem));
- 
+		return postagemRepository.findById(postagem.getId())
+		.map(resposta -> ResponseEntity.ok().body(postagemRepository.save(postagem)))
+		.orElse(ResponseEntity.notFound().build());
 	}
 	
+	///DELETA POSTAGEM
 	@DeleteMapping ("/{id}")
 	public void deletePostagem(@PathVariable Long id) {
 		postagemRepository.deleteById(id);
 	}
+	
 	
 	
 }
