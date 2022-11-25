@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.generation.blogpessoal.model.Postagem;
 import com.generation.blogpessoal.repository.PostagemRepository;
+import com.generation.blogpessoal.repository.TemaRepository;
 
 
 
@@ -30,6 +31,9 @@ public class PostagemController {
 	
 	@Autowired
 	private PostagemRepository postagemRepository;
+	
+	@Autowired
+	private TemaRepository temaRepository;
 	
 	@GetMapping
 	public ResponseEntity<List<Postagem> > getall() {
@@ -48,6 +52,8 @@ public class PostagemController {
 				.orElse(ResponseEntity.notFound().build());
 		// EQUIVALENTE A BUSCA = SELECT * FROM tb_postagens WHERE id = 1;
 	
+		
+		
 		
 		
 //FORME DE BUSCA MAIS VOLUMOSA
@@ -69,17 +75,32 @@ public class PostagemController {
 	//CRIAR POST
 	@PostMapping
 	public ResponseEntity<Postagem> postPostagem(@Valid @RequestBody Postagem postagem){
-		return ResponseEntity.status(HttpStatus.CREATED).body(postagemRepository.save(postagem));
+		if (temaRepository.existsById(postagem.getTema().getId()))
+			return ResponseEntity.status(HttpStatus.CREATED)
+					.body(postagemRepository.save(postagem));
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+
  
 	}
 	
 	//ATUALIZAR POST
 	@PutMapping
 	public ResponseEntity<Postagem> putPostagem(@Valid @RequestBody Postagem postagem){
-		return postagemRepository.findById(postagem.getId())
-		.map(resposta -> ResponseEntity.ok().body(postagemRepository.save(postagem)))
-		.orElse(ResponseEntity.notFound().build());
-	}
+		if (postagemRepository.existsById(postagem.getId())) {
+			if (postagemRepository.existsById(postagem.getTema().getId()))
+				return ResponseEntity.status(HttpStatus.OK)
+						.body(postagemRepository.save(postagem));
+			
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+		}
+		
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+		
+	/*	return postagemRepository.findById(postagem.getId())
+		.map(resposta -> ResponseEntity.ok()
+								.body(postagemRepository.save(postagem)))
+		.orElse(ResponseEntity.notFound().build()); */
+	} 
 	
 	///DELETA POSTAGEM
 	@DeleteMapping ("/{id}")
