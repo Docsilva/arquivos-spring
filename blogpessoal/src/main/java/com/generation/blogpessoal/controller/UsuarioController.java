@@ -1,5 +1,6 @@
 package com.generation.blogpessoal.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -52,6 +53,11 @@ public class UsuarioController {
 		return usuarioService.autenticarUsuario(usuarioLogin)
 				.map(resposta -> ResponseEntity.status(HttpStatus.OK).body(resposta))
 				.orElse(ResponseEntity.status(HttpStatus.UNAUTHORIZED).build());
+	}
+	
+	@GetMapping("/usuario/{buscar}")
+	public ResponseEntity<Optional<Usuario>> getByUsuario(@PathVariable String usuario) {
+		return ResponseEntity.ok(UsuarioRepository.findByUsuario(usuario));
 	}
 	
 
