@@ -1,4 +1,4 @@
-package com.generation.blogpessoal.model;
+package com.generation.lojagame.model;
 
 import java.util.List;
 
@@ -40,12 +40,10 @@ public class Usuario {
 
 	@OneToMany(mappedBy = "usuario", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties("usuario")
-	private List<Postagem> postagem;
-
-	/* Insira os Getters and Setters */
+	private List<Produto> produto;
 
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Long id) {
@@ -53,7 +51,7 @@ public class Usuario {
 	}
 
 	public String getNome() {
-		return this.nome;
+		return nome;
 	}
 
 	public void setNome(String nome) {
@@ -61,7 +59,7 @@ public class Usuario {
 	}
 
 	public String getUsuario() {
-		return this.usuario;
+		return usuario;
 	}
 
 	public void setUsuario(String usuario) {
@@ -69,7 +67,7 @@ public class Usuario {
 	}
 
 	public String getSenha() {
-		return this.senha;
+		return senha;
 	}
 
 	public void setSenha(String senha) {
@@ -77,19 +75,21 @@ public class Usuario {
 	}
 
 	public String getFoto() {
-		return this.foto;
+		return foto;
 	}
 
 	public void setFoto(String foto) {
 		this.foto = foto;
 	}
 
-	public List<Postagem> getPostagem() {
-		return this.postagem;
+	public List<Produto> getProduto() {
+		return produto;
 	}
 
-	public void setPostagem(List<Postagem> postagem) {
-		this.postagem = postagem;
+	public void setProduto(List<Produto> produto) {
+		this.produto = produto;
 	}
 	
+	
+
 }

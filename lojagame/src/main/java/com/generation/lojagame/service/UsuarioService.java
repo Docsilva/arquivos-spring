@@ -1,17 +1,17 @@
-package com.generation.blogpessoal.service;
+package com.generation.lojagame.service;
 
 import java.nio.charset.Charset;
 import java.util.Optional;
 
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.generation.blogpessoal.model.Usuario;
-import com.generation.blogpessoal.model.UsuarioLogin;
-import com.generation.blogpessoal.repository.UsuarioRepository;
+import com.generation.lojagame.model.Usuario;
+import com.generation.lojagame.model.UsuarioLogin;
+import com.generation.lojagame.repository.UsuarioRepository;
+
 
 @Service
 public class UsuarioService {

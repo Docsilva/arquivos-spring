@@ -19,10 +19,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
-
 import com.generation.blogpessoal.model.Postagem;
-import com.generation.blogpessoal.repository.PostagemRepository;
+import com.generation.blogpessoal.model.Usuario;
 import com.generation.blogpessoal.repository.TemaRepository;
+import com.generation.blogpessoal.repository.PostagemRepository;
 
 
 
@@ -33,12 +33,13 @@ public class PostagemController {
 	
 	@Autowired
 	private PostagemRepository postagemRepository;
+	//private PostagemRepository postagemRepository;
 	
 	@Autowired
 	private TemaRepository temaRepository;
 	
 	@GetMapping
-	public ResponseEntity<List<Postagem> > getall() {
+	public ResponseEntity<List<Usuario>> getall() {
 		return ResponseEntity.ok(postagemRepository.findAll());
 		/*RETURN É O MESMO QUE USAR =  SELECT * FROM tb_postagens; */
 		
@@ -47,7 +48,7 @@ public class PostagemController {
 	
 	// VIZUALIZAR TODAS AS POSTAGENS
 	@GetMapping("/{id}")
-	public ResponseEntity<Postagem> getById(@PathVariable Long id) {
+	public ResponseEntity<Usuario> getById(@PathVariable Long id) {
 
 		return postagemRepository.findById(id)
 				.map(resposta -> ResponseEntity.ok(resposta))
@@ -70,8 +71,8 @@ public class PostagemController {
 	
 	//BUSCAR PALAVRA NO TITULO
 	@GetMapping("/titulo/{titulo}")
-	public ResponseEntity<List<Postagem> > getByTitulo(@PathVariable String titulo) {
-		return ResponseEntity.ok(postagemRepository.findByTituloContainingIgnoreCase(titulo));
+	public ResponseEntity<Optional<Postagem>> getByPostagem(@PathVariable String postagem) {
+		return ResponseEntity.ok(postagemRepository.findByPostagem(postagem));
 	}
 	
 	//CRIAR POST
@@ -90,9 +91,7 @@ public class PostagemController {
 	public ResponseEntity<Postagem> putPostagem(@Valid @RequestBody Postagem postagem){
 		if (postagemRepository.existsById(postagem.getId())) {
 			if (postagemRepository.existsById(postagem.getTema().getId()))
-				return ResponseEntity.status(HttpStatus.OK)
-						.body(postagemRepository.save(postagem));
-			
+				return ResponseEntity.status(HttpStatus.OK).body(postagemRepository.save(postagem));			
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
 		}
 		
@@ -108,7 +107,7 @@ public class PostagemController {
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable Long id) {
-		Optional<Postagem> postagem = postagemRepository.findById(id);
+		Optional<Postagem> postagem = postagemRepository.findById (id);
 		
 		if(postagem.isEmpty())
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND);

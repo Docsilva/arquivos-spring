@@ -23,7 +23,7 @@ import com.generation.lojagame.repository.CategoriaRepository;
 
 
 @RestController
-@RequestMapping("/produtos")
+@RequestMapping("/produto")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class ProdutoController {
 	

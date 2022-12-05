@@ -1,4 +1,4 @@
-package com.generation.blogpessoal.security;
+package com.generation.lojagame.security;
 
 import java.util.Optional;
 
@@ -9,8 +9,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.generation.blogpessoal.model.Usuario;
-import com.generation.blogpessoal.repository.UsuarioRepository;
+import com.generation.lojagame.model.Usuario;
+import com.generation.lojagame.repository.UsuarioRepository;
+
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
