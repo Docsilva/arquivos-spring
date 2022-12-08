@@ -101,13 +101,13 @@ public class PostagemController {
 		.map(resposta -> ResponseEntity.ok()
 								.body(postagemRepository.save(postagem)))
 		.orElse(ResponseEntity.notFound().build()); */
-	} 
+	}
 	
 	///DELETA POSTAGEM
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable Long id) {
-		Optional<Postagem> postagem = postagemRepository.findById (id);
+		Optional<Postagem> postagem = postagemRepository.findByPostagem(null);
 		
 		if(postagem.isEmpty())
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
