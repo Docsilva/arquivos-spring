@@ -77,7 +77,7 @@ public class PostagemController {
 	
 	//CRIAR POST
 	@PostMapping
-	public ResponseEntity<Postagem> postPostagem(@Valid @RequestBody Postagem postagem){
+	public ResponseEntity<Object> postPostagem(@Valid @RequestBody Postagem postagem){
 		if (temaRepository.existsById(postagem.getTema().getId()))
 			return ResponseEntity.status(HttpStatus.CREATED)
 					.body(postagemRepository.save(postagem));
@@ -88,7 +88,7 @@ public class PostagemController {
 	
 	//ATUALIZAR POST
 	@PutMapping
-	public ResponseEntity<Postagem> putPostagem(@Valid @RequestBody Postagem postagem){
+	public ResponseEntity<Object> putPostagem(@Valid @RequestBody Postagem postagem){
 		if (postagemRepository.existsById(postagem.getId())) {
 			if (postagemRepository.existsById(postagem.getTema().getId()))
 				return ResponseEntity.status(HttpStatus.OK).body(postagemRepository.save(postagem));			

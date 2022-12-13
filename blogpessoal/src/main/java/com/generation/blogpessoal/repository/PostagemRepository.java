@@ -14,5 +14,7 @@ import com.generation.blogpessoal.model.Usuario;
 public interface PostagemRepository extends JpaRepository<Usuario, Long>{
 
 	public Optional<Postagem> findByPostagem(String usuario);
+
+	public Object save(@Valid Postagem postagem);
 	
 }
